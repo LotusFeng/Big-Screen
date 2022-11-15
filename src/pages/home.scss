@@ -1,5 +1,12 @@
 @import "../shared/helper";
 
+%legend {
+  height: px(40); display: flex; align-items: center;
+  justify-content: center; flex-wrap: wrap; padding-right: px(10);
+  > span {display: inline-block; width: px(16); height: px(10);
+    border-radius: px(2); margin: 0 px(10);}
+}
+
 .home {flex: 1;display: flex;flex-direction: column;
   background: #010310; color: white;
   font-size: px(16);
@@ -14,7 +21,7 @@
     border: 1px solid #0d2d59;
     margin: px(20) 0 1px;
     border-radius: 4px;
-    background: #0d0d2b;
+    background: #0c0d2b;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,14 +43,10 @@
       border-radius: 4px;
       position: relative;
       box-shadow: 0 0 2px 0 #0e325f, inset 0 0 2px 0 #0e325f;
-      background: #0c1139;
+      background: #0f113a;
       &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
+        pointer-events: none;
+        content: '';position: absolute;left: 0;right: 0;bottom: 0;top: 0;
         border-radius: 4px;
         box-shadow: 17px 0 0 -16px #0e325f,
         -17px 0 0 -16px #0e325f,
@@ -63,17 +66,35 @@
     }
     > .section2 {
       grid-area: box2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     > .section3 {
       grid-area: box3;
     }
     > .section4 {
       grid-area: box4;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     > .section5 {
       grid-area: box5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      > .row1 {
+        height: px(317);
+      }
+      > .row2 {
+        height: px(317);
+      }
+      > .row3 {
+        height: px(455);
+      }
     }
-    .管辖统计, .破获排名 {
+    .管辖统计, .破获排名, .发案趋势, .案发时段, .战果, .籍贯, .年龄段, .案发类型, .案发街道, .作案手段 {
       height: px(315);
       display: flex;
       flex-direction: column;
@@ -88,9 +109,201 @@
         padding: px(10) px(28);
         text-shadow: 0 0 px(3) white;
       }
+      .charts {
+        width: 100%;flex: 1;
+        display: flex;
+      }
       .chart {
         flex: 1;
         width: 100%;
+      }
+    }
+    .发案趋势, .案发时段 {
+      height: px(363);
+    }
+    .chart11, .chart12 {
+      flex: 1;display: flex; flex-direction: column;
+      > .chart {display: flex;
+        > .main {flex: 1}
+      }
+      .legend {@extend %legend;}
+    }
+    .年龄段 {display: flex;flex-direction: column;
+      height: px(363);
+      > .charts {
+        padding: px(30);
+      }
+      &-图1, &-图2, &-图3 {
+        flex: 1;display: flex; flex-direction: column;
+      }
+      &-图1, &-图2 {
+        .legend { @extend %legend;
+          .male {background: #33a4fa;}
+          .female {background: #8d70f8;}
+        }
+        .chart {
+          position: relative;
+          display: flex;
+          > .main {flex: 1;}
+          > .text {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            color: #33a4fa; font-size: px(40); text-shadow: 0 0 px(20) #33a4fa;font-weight: bold;}
+        }
+      }
+      &-图2 {
+        width: px(290); flex-shrink: 0;
+        .legend {
+          justify-content: flex-start;
+        }
+      }
+      &-图3 {
+        border: 1px solid #08397d;
+        h3 {font-size: px(20); color: #7ab6db; margin-top: px(6);}
+      }
+    }
+    .籍贯 {
+      height: px(753); background: transparent;
+      > .wrapper {
+        position: relative;width: 100%;flex: 1;
+        display: flex; flex-direction: column;
+        .chart {flex: 1;}
+        .legend {
+          position: absolute;top: px(40);left: px(20);display: flex;
+          align-items: center;
+          font-size: px(22); padding: px(20) px(10) px(20) 0;
+          border-radius: 0;
+          .icon {
+            margin: 0 px(10);
+            display: inline-block;
+            width: px(16);
+            height: px(16);
+            border-radius: 50%;
+            background: #1cecd9;
+          }
+        }
+        .notes {
+          position: absolute;
+          bottom: px(10);
+          right: px(10);
+        }
+      }
+      // 扫描图
+      .text {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: px(5) px(20);
+        font-size: px(16);
+        color: #fff;
+      }
+      .radar {
+        background: -webkit-radial-gradient(
+            center,
+            #0a5299 0%,
+            rgba(32, 255, 77, 0) 75%),
+        -webkit-repeating-radial-gradient(rgba(32, 255, 77, 0) 5.8%, rgba(32,
+            255,
+            77,
+            0) 18%, #0a5299 18.6%, rgba(32, 255, 77, 0) 18.9%),
+        -webkit-linear-gradient(90deg, rgba(32, 255, 77, 0) 49.5%, #0a5299 50%, rgba(32,
+            255,
+            77,
+            0) 50.2%),
+        -webkit-linear-gradient(0deg, rgba(32, 255, 77, 0) 49.5%, #0a5299 50%, rgba(32,
+            255,
+            77,
+            0) 50.2%);
+        width: px(80);
+        height: px(80);
+        max-height: px(80);
+        max-width: px(80);
+        position: absolute;
+        right: px(20);
+        top: px(35);
+        z-index: 2;
+        /* 元素居中定位 */
+        transform: translate (-50%, -50%);
+        border-radius: 50%;
+        border: px(2) solid #0a5299;
+        overflow: hidden;
+      }
+      .radar:before {
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        animation: blips 5s infinite;
+        animation-timing-function: linear;
+        animation-delay: 1.4s;
+      }
+      .radar:after {
+        content: " ";
+        display: block;
+        background-image: linear-gradient(44deg,
+          rgba(0, 255, 51, 0) 50%,
+          #0a5299 100%);
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: radar-beam 5s infinite;
+        /* 速度相同 */
+        animation-timing-function: linear;
+        transform-origin: bottom right;
+        border-radius: 100% 0 0 0;
+      }
+      @keyframes radar-beam {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      // 扫描图  the end
+      .time {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: px(5) px(10);
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+        color: #6e6ab1;
+        font-size: px(22);
+      }
+    }
+    .战果, .作案手段 {
+      padding: 0 px(24);
+      > table {
+        width: 100%; table-layout: fixed;
+        margin-top: px(25);
+        border-collapse: collapse;
+        th, td {
+          border: 1px solid #1a3671;
+        }
+        thead {
+          th {
+            height: px(70);
+            box-shadow: inset 0 0 px(60) 0 #1f3d85;
+          }
+        }
+        tbody {
+          td {height: px(50); width: px(84);
+            background: #1c2456;
+          }
+
+        }
+      }
+    }
+    .作案手段 {
+      > table {
+        tbody {
+          td {
+            height: px(26);
+          }
+        }
       }
     }
     .破获排名 {
